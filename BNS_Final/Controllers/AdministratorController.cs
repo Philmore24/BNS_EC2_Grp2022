@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace BNS_Final.Controllers
 {
-[Authorize(Roles = "Admin")]
+
     public class AdministratorController : Controller
     {
         private readonly UserManager<ApplicationUser> userManager;
@@ -33,14 +33,14 @@ namespace BNS_Final.Controllers
             _context = context;
         }
 
-        [Authorize(Roles = "Admin")]
+       [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             return View();
         }
 
 
-       [Authorize(Roles = "Admin")]
+      [Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<IActionResult> Confirm(Customer customer, Account account)
         {
@@ -76,7 +76,7 @@ namespace BNS_Final.Controllers
             return View(users);
         }
 
-       [Authorize(Roles = "Admin")]
+      [Authorize(Roles = "Admin")]
 
         [HttpPost]
         public async Task<IActionResult> Create(RegisterAccount model)
@@ -165,7 +165,7 @@ namespace BNS_Final.Controllers
             return View(users);
         }
 
-        [Authorize(Roles = "Admin")]
+       [Authorize(Roles = "Admin")]
         public async Task<IActionResult> viewAllTeller()
         {
             var users = await userManager.GetUsersInRoleAsync("Teller");
@@ -223,7 +223,7 @@ namespace BNS_Final.Controllers
             return View(account);
         }
 
-        [Authorize(Roles = "Admin")]
+       [Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<IActionResult> TellerDetails(string id)
         {
@@ -257,7 +257,7 @@ namespace BNS_Final.Controllers
             return View(tellers);
         }
 
-        [Authorize(Roles = "Admin")]
+       [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
@@ -275,7 +275,7 @@ namespace BNS_Final.Controllers
             return View(account);
         }
 
-        [Authorize(Roles = "Admin")]
+       [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteTeller(string id)
         {
             if (id == null)
@@ -293,7 +293,7 @@ namespace BNS_Final.Controllers
             return View(teller);
         }
 
-        [Authorize(Roles = "Admin")]
+       [Authorize(Roles = "Admin")]
         // POST: Accounts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -319,7 +319,7 @@ namespace BNS_Final.Controllers
 
         }
 
-        [Authorize(Roles = "Admin")]
+       [Authorize(Roles = "Admin")]
         // POST: Accounts/Delete/5
         [HttpPost, ActionName("DeleteTeller")]
         [ValidateAntiForgeryToken]
@@ -370,7 +370,7 @@ namespace BNS_Final.Controllers
                 return View("Roles");
             }
         }
-        [Authorize(Roles = "Admin")]
+       [Authorize(Roles = "Admin")]
         // GET: Bills/Edit/5
         public async Task<IActionResult> EditP(string id, ApplicationUser model)
         {
@@ -389,7 +389,7 @@ namespace BNS_Final.Controllers
             return View(user);
         }
 
-        [Authorize(Roles = "Admin")]
+       [Authorize(Roles = "Admin")]
         // POST: Bills/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -426,7 +426,7 @@ namespace BNS_Final.Controllers
             }
         }
 
-        [Authorize(Roles = "Admin")]
+       [Authorize(Roles = "Admin")]
 
         // GET: Bills/Edit/5
         public async Task<IActionResult> EditT(string id, ApplicationUser model)
@@ -446,7 +446,7 @@ namespace BNS_Final.Controllers
             return View(user);
         }
 
-        [Authorize(Roles = "Admin")]
+       [Authorize(Roles = "Admin")]
         // POST: Bills/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -483,7 +483,7 @@ namespace BNS_Final.Controllers
             }
         }
 
-        [Authorize(Roles = "Admin")]
+       [Authorize(Roles = "Admin")]
 
         // GET: Bills/Edit/5
         public async Task<IActionResult> EditAd(string id)
@@ -504,7 +504,7 @@ namespace BNS_Final.Controllers
         }
 
 
-        [Authorize(Roles = "Admin")]
+       [Authorize(Roles = "Admin")]
         // POST: Bills/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -545,7 +545,7 @@ namespace BNS_Final.Controllers
             return View(customer);
         }
 
-        [Authorize(Roles = "Admin")]
+       [Authorize(Roles = "Admin")]
 
         // GET: Bills/Edit/5
         public async Task<IActionResult> EditID(string id)
@@ -565,7 +565,7 @@ namespace BNS_Final.Controllers
             return View(teller);
         }
 
-        [Authorize(Roles = "Admin")]
+       [Authorize(Roles = "Admin")]
 
         // POST: Bills/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -607,7 +607,7 @@ namespace BNS_Final.Controllers
             return View(teller);
         }
 
-        [Authorize(Roles = "Admin")]
+       [Authorize(Roles = "Admin")]
 
         // GET: Bills/Edit/5
         public async Task<IActionResult> EditAc(string id)
@@ -628,7 +628,7 @@ namespace BNS_Final.Controllers
             return View(account);
         }
 
-        [Authorize(Roles = "Admin")]
+       [Authorize(Roles = "Admin")]
         // POST: Bills/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -697,7 +697,7 @@ namespace BNS_Final.Controllers
 
 
 
-        [Authorize(Roles = "Admin")]
+       [Authorize(Roles = "Admin")]
         [HttpGet]
         public IActionResult CreateRole()
         {
@@ -731,7 +731,7 @@ namespace BNS_Final.Controllers
             return View();
         }
 
-        [Authorize(Roles = "Admin")]
+       [Authorize(Roles = "Admin")]
         [HttpGet]
         public IActionResult ListRoles()
         {
@@ -739,7 +739,7 @@ namespace BNS_Final.Controllers
             return View(roles);
         }
 
-        [Authorize(Roles = "Admin")]
+       [Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<IActionResult> EditRole(string id)
         {
@@ -767,7 +767,7 @@ namespace BNS_Final.Controllers
             return View(model);
         }
 
-        [Authorize(Roles = "Admin")]
+       [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> EditRole(EditRoles model)
         {
@@ -799,7 +799,7 @@ namespace BNS_Final.Controllers
 
         }
 
-        [Authorize(Roles = "Admin")]
+       [Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<IActionResult> EditUserInRoles(string roleId)
         {
@@ -838,7 +838,7 @@ namespace BNS_Final.Controllers
         }
 
 
-        [Authorize(Roles = "Admin")]
+       [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> EditUserInRoles(List<UserRoles> model, string roleId)
         {
@@ -888,13 +888,13 @@ namespace BNS_Final.Controllers
 
         }
 
-       [Authorize(Roles = "Admin")]
+      [Authorize(Roles = "Admin")]
         public IActionResult CreateTeller()
         {
             return View();
         }
 
-        [Authorize(Roles = "Admin")]
+       [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> CreateTeller(TellerRegister model)
         {
@@ -921,7 +921,7 @@ namespace BNS_Final.Controllers
             return View(model);
         }
 
-        [Authorize(Roles = "Admin")]
+       [Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<IActionResult> ConfirmTeller(Teller teller)
         {

@@ -36,10 +36,6 @@ namespace BNS_Final.Models
         [Authorize(Roles = "Customer")]
         public async Task<IActionResult> CustomerTrans()
         {
-
-
-
-
             try
             {
 
