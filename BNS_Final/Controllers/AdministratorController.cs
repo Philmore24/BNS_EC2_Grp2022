@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace BNS_Final.Controllers
 {
-[Authorize(Roles = "Admin")]
+
     public class AdministratorController : Controller
     {
         private readonly UserManager<ApplicationUser> userManager;
@@ -33,14 +33,14 @@ namespace BNS_Final.Controllers
             _context = context;
         }
 
-        [Authorize(Roles = "Admin")]
+       [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             return View();
         }
 
 
-       [Authorize(Roles = "Admin")]
+      [Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<IActionResult> Confirm(Customer customer, Account account)
         {
@@ -76,23 +76,19 @@ namespace BNS_Final.Controllers
             return View(users);
         }
 
-       [Authorize(Roles = "Admin")]
+      [Authorize(Roles = "Admin")]
 
         [HttpPost]
         public async Task<IActionResult> Create(RegisterAccount model)
         {
-            // string accountNum = Convert.ToString(model.accountNumber);
+            
             string address = model.streetAddress;
-            // string cardnum = model.cardNum;
+          
             string balance = Convert.ToString(model.balance);
             string type = model.type;
             string email = model.Email;
 
-            /* assign an account number starting with 212(seven digits) and card num(12 digits) starting with 4001. last part of
-            numbers will be increment base on existing numbers from database or default from start*/
-
-            // Account account = null;
-
+           
 
             int countAccount = _context.Account.Count();
 
@@ -101,14 +97,14 @@ namespace BNS_Final.Controllers
                 int accountFinish = 2000;
                 string accountLast = Convert.ToString(accountFinish);
                 string accountStart = String.Concat("919", accountLast);
-                long finalAccount = Convert.ToInt64(accountStart); //because accountNum is of type long
-                                                                   // account.accountNumber = finalAccount; //first account num is 2121000
+                long finalAccount = Convert.ToInt64(accountStart);
+
                 HttpContext.Session.SetString("accountNum", accountStart);
 
                 int cardNumFinsh = 8765432;
                 string cardLast = Convert.ToString(cardNumFinsh);
                 string cardStart = "4001" + cardLast;
-                // account.cardNum = cardStart;
+               
                 HttpContext.Session.SetString("cardnum", cardStart);
 
             }
@@ -119,21 +115,21 @@ namespace BNS_Final.Controllers
                 string accountLast = Convert.ToString(newAccountFinish);
                 string accountStart = "919" + accountLast;
                 long finalAccount = Convert.ToInt64(accountStart);
-                //account.accountNumber = finalAccount;
+              
                 HttpContext.Session.SetString("accountNum", accountStart);
 
                 int cardNumFinsh = 8765432;
                 int newCardFinish = countAccount + cardNumFinsh;
                 string cardLast = Convert.ToString(newCardFinish);
                 string cardStart = "4001" + cardLast;
-                //  account.cardNum = cardStart;
+               
                 HttpContext.Session.SetString("cardnum", cardStart);
 
             }
 
-            //  HttpContext.Session.SetString("accountNum", );
+          
             HttpContext.Session.SetString("address", address);
-            // HttpContext.Session.SetString("cardnum", cardnum);
+           
             HttpContext.Session.SetString("balance", balance);
             HttpContext.Session.SetString("type", type);
             HttpContext.Session.SetString("email", email);
@@ -165,7 +161,7 @@ namespace BNS_Final.Controllers
             return View(users);
         }
 
-        [Authorize(Roles = "Admin")]
+       [Authorize(Roles = "Admin")]
         public async Task<IActionResult> viewAllTeller()
         {
             var users = await userManager.GetUsersInRoleAsync("Teller");
@@ -192,12 +188,12 @@ namespace BNS_Final.Controllers
 
             if (teller == true)
             {
-                HttpContext.Session.SetString("Address", "None"); // start here
+                HttpContext.Session.SetString("Address", "None"); 
 
             }
             else
             {
-                HttpContext.Session.SetString("Address", customer.address); // start here
+                HttpContext.Session.SetString("Address", customer.address); 
             }
 
             HttpContext.Session.SetString("ID", user.Id);
@@ -223,7 +219,7 @@ namespace BNS_Final.Controllers
             return View(account);
         }
 
-        [Authorize(Roles = "Admin")]
+       [Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<IActionResult> TellerDetails(string id)
         {
@@ -257,7 +253,7 @@ namespace BNS_Final.Controllers
             return View(tellers);
         }
 
-        [Authorize(Roles = "Admin")]
+       [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
@@ -275,7 +271,7 @@ namespace BNS_Final.Controllers
             return View(account);
         }
 
-        [Authorize(Roles = "Admin")]
+       [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteTeller(string id)
         {
             if (id == null)
@@ -293,7 +289,7 @@ namespace BNS_Final.Controllers
             return View(teller);
         }
 
-        [Authorize(Roles = "Admin")]
+       [Authorize(Roles = "Admin")]
         // POST: Accounts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -319,7 +315,7 @@ namespace BNS_Final.Controllers
 
         }
 
-        [Authorize(Roles = "Admin")]
+       [Authorize(Roles = "Admin")]
         // POST: Accounts/Delete/5
         [HttpPost, ActionName("DeleteTeller")]
         [ValidateAntiForgeryToken]
@@ -370,7 +366,7 @@ namespace BNS_Final.Controllers
                 return View("Roles");
             }
         }
-        [Authorize(Roles = "Admin")]
+       [Authorize(Roles = "Admin")]
         // GET: Bills/Edit/5
         public async Task<IActionResult> EditP(string id, ApplicationUser model)
         {
@@ -389,7 +385,7 @@ namespace BNS_Final.Controllers
             return View(user);
         }
 
-        [Authorize(Roles = "Admin")]
+       [Authorize(Roles = "Admin")]
         // POST: Bills/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -426,7 +422,7 @@ namespace BNS_Final.Controllers
             }
         }
 
-        [Authorize(Roles = "Admin")]
+       [Authorize(Roles = "Admin")]
 
         // GET: Bills/Edit/5
         public async Task<IActionResult> EditT(string id, ApplicationUser model)
@@ -446,7 +442,7 @@ namespace BNS_Final.Controllers
             return View(user);
         }
 
-        [Authorize(Roles = "Admin")]
+       [Authorize(Roles = "Admin")]
         // POST: Bills/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -483,7 +479,7 @@ namespace BNS_Final.Controllers
             }
         }
 
-        [Authorize(Roles = "Admin")]
+       [Authorize(Roles = "Admin")]
 
         // GET: Bills/Edit/5
         public async Task<IActionResult> EditAd(string id)
@@ -504,7 +500,7 @@ namespace BNS_Final.Controllers
         }
 
 
-        [Authorize(Roles = "Admin")]
+       [Authorize(Roles = "Admin")]
         // POST: Bills/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -545,7 +541,7 @@ namespace BNS_Final.Controllers
             return View(customer);
         }
 
-        [Authorize(Roles = "Admin")]
+       [Authorize(Roles = "Admin")]
 
         // GET: Bills/Edit/5
         public async Task<IActionResult> EditID(string id)
@@ -565,7 +561,7 @@ namespace BNS_Final.Controllers
             return View(teller);
         }
 
-        [Authorize(Roles = "Admin")]
+       [Authorize(Roles = "Admin")]
 
         // POST: Bills/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -607,7 +603,7 @@ namespace BNS_Final.Controllers
             return View(teller);
         }
 
-        [Authorize(Roles = "Admin")]
+       [Authorize(Roles = "Admin")]
 
         // GET: Bills/Edit/5
         public async Task<IActionResult> EditAc(string id)
@@ -628,7 +624,7 @@ namespace BNS_Final.Controllers
             return View(account);
         }
 
-        [Authorize(Roles = "Admin")]
+       [Authorize(Roles = "Admin")]
         // POST: Bills/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -697,7 +693,7 @@ namespace BNS_Final.Controllers
 
 
 
-        [Authorize(Roles = "Admin")]
+       [Authorize(Roles = "Admin")]
         [HttpGet]
         public IActionResult CreateRole()
         {
@@ -731,7 +727,7 @@ namespace BNS_Final.Controllers
             return View();
         }
 
-        [Authorize(Roles = "Admin")]
+       [Authorize(Roles = "Admin")]
         [HttpGet]
         public IActionResult ListRoles()
         {
@@ -739,7 +735,7 @@ namespace BNS_Final.Controllers
             return View(roles);
         }
 
-        [Authorize(Roles = "Admin")]
+       [Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<IActionResult> EditRole(string id)
         {
@@ -767,7 +763,7 @@ namespace BNS_Final.Controllers
             return View(model);
         }
 
-        [Authorize(Roles = "Admin")]
+       [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> EditRole(EditRoles model)
         {
@@ -799,7 +795,7 @@ namespace BNS_Final.Controllers
 
         }
 
-        [Authorize(Roles = "Admin")]
+       [Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<IActionResult> EditUserInRoles(string roleId)
         {
@@ -838,7 +834,7 @@ namespace BNS_Final.Controllers
         }
 
 
-        [Authorize(Roles = "Admin")]
+       [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> EditUserInRoles(List<UserRoles> model, string roleId)
         {
@@ -888,13 +884,13 @@ namespace BNS_Final.Controllers
 
         }
 
-       [Authorize(Roles = "Admin")]
+      [Authorize(Roles = "Admin")]
         public IActionResult CreateTeller()
         {
             return View();
         }
 
-        [Authorize(Roles = "Admin")]
+       [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> CreateTeller(TellerRegister model)
         {
@@ -921,7 +917,7 @@ namespace BNS_Final.Controllers
             return View(model);
         }
 
-        [Authorize(Roles = "Admin")]
+       [Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<IActionResult> ConfirmTeller(Teller teller)
         {

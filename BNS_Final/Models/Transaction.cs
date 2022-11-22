@@ -37,9 +37,9 @@ namespace BNS_Final.Models
 
         [Required]
         [Display(Name = "Senders Account")]
-        [DataType(DataType.Password)]
+      //  [DataType(DataType.Password)]
         [Compare("receivingAccount", ErrorMessage = "Sender and Receiving Account do not match.")]
-        // [Remote(action: "CheckBalance", controller: "TransactionsController")]
+       
 
         public long senderAccount { get; set; }
 
