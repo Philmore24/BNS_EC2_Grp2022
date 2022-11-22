@@ -81,18 +81,14 @@ namespace BNS_Final.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(RegisterAccount model)
         {
-            // string accountNum = Convert.ToString(model.accountNumber);
+            
             string address = model.streetAddress;
-            // string cardnum = model.cardNum;
+          
             string balance = Convert.ToString(model.balance);
             string type = model.type;
             string email = model.Email;
 
-            /* assign an account number starting with 212(seven digits) and card num(12 digits) starting with 4001. last part of
-            numbers will be increment base on existing numbers from database or default from start*/
-
-            // Account account = null;
-
+           
 
             int countAccount = _context.Account.Count();
 
@@ -101,14 +97,14 @@ namespace BNS_Final.Controllers
                 int accountFinish = 2000;
                 string accountLast = Convert.ToString(accountFinish);
                 string accountStart = String.Concat("919", accountLast);
-                long finalAccount = Convert.ToInt64(accountStart); //because accountNum is of type long
-                                                                   // account.accountNumber = finalAccount; //first account num is 2121000
+                long finalAccount = Convert.ToInt64(accountStart);
+
                 HttpContext.Session.SetString("accountNum", accountStart);
 
                 int cardNumFinsh = 8765432;
                 string cardLast = Convert.ToString(cardNumFinsh);
                 string cardStart = "4001" + cardLast;
-                // account.cardNum = cardStart;
+               
                 HttpContext.Session.SetString("cardnum", cardStart);
 
             }
@@ -119,21 +115,21 @@ namespace BNS_Final.Controllers
                 string accountLast = Convert.ToString(newAccountFinish);
                 string accountStart = "919" + accountLast;
                 long finalAccount = Convert.ToInt64(accountStart);
-                //account.accountNumber = finalAccount;
+              
                 HttpContext.Session.SetString("accountNum", accountStart);
 
                 int cardNumFinsh = 8765432;
                 int newCardFinish = countAccount + cardNumFinsh;
                 string cardLast = Convert.ToString(newCardFinish);
                 string cardStart = "4001" + cardLast;
-                //  account.cardNum = cardStart;
+               
                 HttpContext.Session.SetString("cardnum", cardStart);
 
             }
 
-            //  HttpContext.Session.SetString("accountNum", );
+          
             HttpContext.Session.SetString("address", address);
-            // HttpContext.Session.SetString("cardnum", cardnum);
+           
             HttpContext.Session.SetString("balance", balance);
             HttpContext.Session.SetString("type", type);
             HttpContext.Session.SetString("email", email);
@@ -192,12 +188,12 @@ namespace BNS_Final.Controllers
 
             if (teller == true)
             {
-                HttpContext.Session.SetString("Address", "None"); // start here
+                HttpContext.Session.SetString("Address", "None"); 
 
             }
             else
             {
-                HttpContext.Session.SetString("Address", customer.address); // start here
+                HttpContext.Session.SetString("Address", customer.address); 
             }
 
             HttpContext.Session.SetString("ID", user.Id);
