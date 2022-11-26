@@ -142,6 +142,7 @@ namespace BNS_Final.Controllers
 
                 if (result.Succeeded)
                 {
+                    await userManager.AddToRoleAsync(user, "Customer");
                     return RedirectToAction("Confirm", "Administrator");
 
                 }
@@ -906,6 +907,7 @@ namespace BNS_Final.Controllers
 
                 if (result.Succeeded)
                 {
+
                     return RedirectToAction("ConfirmTeller", "Administrator");
                 }
 
