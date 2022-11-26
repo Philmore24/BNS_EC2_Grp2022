@@ -1,0 +1,30 @@
+﻿
+*{
+
+margin: 0;
+padding: 0; font-family: roboto;
+}
+
+.imgBg {
+    height: 50vh;
+    background: url(https://i.ibb.co/Qpqh6Vr/Scotia-landing.png);
+    background-size: contain;
+    background-position: center;
+}
+
+.banner-title {
+    margin: 160px 20px;
+    color: black;
+
+}
+
+.banner-title h1{
+    font-size: 64px;
+    margin-bottom: 30px;
+    line-height: 60px;
+
+}
+
+.banner-title strong{
+    color: red;
+}
