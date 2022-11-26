@@ -11,6 +11,8 @@
 
   <ItemGroup>
     <Content Remove="wwwroot\css\Landing.css" />
+    <Content Remove="wwwroot\images\Login.png" />
+    <Content Remove="wwwroot\images\Scotia.jpg" />
   </ItemGroup>
 
   <ItemGroup>
